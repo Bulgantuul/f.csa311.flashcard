@@ -1,0 +1,5 @@
+What is Java?::A programming language
+What is Maven?::Build automation tool
+What is Git?::Version control system
+What is a class?::Blueprint for objects
+What is inheritance?::Deriving a new class from existing one
