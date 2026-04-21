@@ -11,7 +11,7 @@ public class StudySession {
     boolean invert;
     Map<Card, CardStats> stats = new HashMap<>();
     Set<Card> mastered = new HashSet<>();
-    Set<Card> recentMistakes = new HashSet<>();
+    List<Card> recentMistakes = new ArrayList<>(); // өөрчлөлт
     boolean lastRoundPerfect = false;
 
     public StudySession(List<Card> cards, CardOrganizer org, int reps, boolean invert) {
@@ -34,7 +34,7 @@ public class StudySession {
             for (Card c : active) mistakeMap.put(c, stats.get(c).mistakes());
             List<Card> ordered = organizer.organize(active, mistakeMap, recentMistakes);
             boolean roundHasMistake = false;
-            Set<Card> newMistakes = new HashSet<>();
+            List<Card> newMistakes = new ArrayList<>(); // өөрчлөлт
 
             for (Card card : ordered) {
                 if (mastered.contains(card)) continue;
@@ -58,7 +58,6 @@ public class StudySession {
                     roundHasMistake = true;
                     newMistakes.add(card);
                 }
-                // achievements during session
                 if (stats.get(card).attempts > 5) System.out.println("🏆 REPEAT achievement!");
                 if (stats.get(card).correct >= 3) System.out.println("🏆 CONFIDENT achievement!");
             }

@@ -1,1 +1,1 @@
-mvn exec:java "-Dexec.mainClass=mn.edu.num.flashcard.FlashcardApp" "-Dexec.args=cards.txt"
+mvn exec:java "-Dexec.mainClass=mn.edu.num.flashcard.FlashcardApp"

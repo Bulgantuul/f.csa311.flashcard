@@ -5,14 +5,20 @@ import java.util.*;
 
 public class RecentMistakesFirstSorter implements CardOrganizer {
     @Override
-    public List<Card> organize(List<Card> cards, Map<Card, Integer> mistakes, Set<Card> recentMistakes) {
+    public List<Card> organize(List<Card> cards, Map<Card, Integer> mistakes, List<Card> recentMistakes) {
         List<Card> wrong = new ArrayList<>();
-        List<Card> correct = new ArrayList<>();
-        for (Card c : cards) {
-            if (recentMistakes.contains(c)) wrong.add(c);
-            else correct.add(c);
+        // Буруу картуудыг сүүлийнхээс эхэнд нь эрэмбэлэх
+        List<Card> reversed = new ArrayList<>(recentMistakes);
+        Collections.reverse(reversed);
+        for (Card c : reversed) {
+            wrong.add(c);
         }
-        wrong.addAll(correct);
+        // Үлдсэн картуудыг (зөв эсвэл буруу биш) анхны дарааллаар нэмэх
+        for (Card c : cards) {
+            if (!recentMistakes.contains(c)) {
+                wrong.add(c);
+            }
+        }
         return wrong;
     }
 }
